@@ -188,10 +188,8 @@ The final Power BI model follows a **star-schema / fact-constellation design**.
 
 ### Data Model Preview
 
-![Power BI Data Model](screenshots/data_model.png)
+<img width="800" height="518" alt="image" src="https://github.com/user-attachments/assets/adc17c08-5411-4001-a394-a089119a5015" />
 
-> **OPTIONAL IMAGE HERE:** screenshot your Power BI Model View and save it as
-> `screenshots/data_model.png`
 
 The project contains three fact tables because the source data represents three different business processes and grains.
 
@@ -375,7 +373,8 @@ The report contains three main pages.
 
 ### 1. Executive Fleet Overview
 
-![Executive Fleet Overview](screenshots/executive_overview.png)
+<img width="2158" height="1185" alt="image" src="https://github.com/user-attachments/assets/d9c7b375-ffc7-4190-9945-0eb79b35aca0" />
+
 
 Purpose:
 
@@ -394,7 +393,8 @@ Headline KPIs include:
 
 ### 2. Aircraft Reliability Analysis
 
-![Aircraft Reliability Analysis](screenshots/aircraft_reliability.png)
+<img width="2158" height="1186" alt="image" src="https://github.com/user-attachments/assets/cf5201aa-8568-429f-a60b-507874970fa9" />
+
 
 Purpose:
 
@@ -413,7 +413,8 @@ Key metrics include:
 
 ### 3. Component & Fault Analysis
 
-![Component & Fault Analysis](screenshots/component_fault_analysis.png)
+<img width="2158" height="1183" alt="image" src="https://github.com/user-attachments/assets/776795aa-bcd2-4478-826f-c30c42d55b63" />
+
 
 Purpose:
 
@@ -538,9 +539,7 @@ Translate findings into actions
 
 ## Dashboard Access
 
-**[Open the interactive Power BI report](PASTE-YOUR-POWER-BI-LINK-HERE)**
-
-> **LINK HERE:** replace the placeholder with the final published report URL.
+**[Open the interactive Power BI report]([PASTE-YOUR-POWER-BI-LINK-HERE](https://app.powerbi.com/view?r=eyJrIjoiODk0ODlkMWYtOGM3ZC00N2EyLTk4YTAtZGYyZmU1MDU2YWUwIiwidCI6IjJkMzE5NGUzLTE2NTQtNDZiZC1iYWUyLWFkMzdiYTExYjBhZSIsImMiOjl9))**
 
 ---
 
