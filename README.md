@@ -18,28 +18,22 @@ This project was built as a practical end-to-end analytics exercise covering dat
 
 ### Executive Fleet Overview
 
-![Executive Fleet Overview](screenshots/executive_overview.png)
+<img width="2158" height="1185" alt="image" src="https://github.com/user-attachments/assets/64e03286-f191-489b-8b80-4836fe5bf33b" />
 
-> **ADD IMAGE HERE:** export or screenshot your Page 1 dashboard and save it as
-> `screenshots/executive_overview.png`
 
 ---
 
 ### Aircraft Reliability Analysis
 
-![Aircraft Reliability Analysis](screenshots/aircraft_reliability.png)
+<img width="2158" height="1186" alt="image" src="https://github.com/user-attachments/assets/278276c1-4887-46f5-b8e7-6daaa723f4fd" />
 
-> **ADD IMAGE HERE:** export or screenshot your Page 2 dashboard and save it as
-> `screenshots/aircraft_reliability.png`
 
 ---
 
 ### Component & Fault Analysis
 
-![Component & Fault Analysis](screenshots/component_fault_analysis.png)
+<img width="2158" height="1183" alt="image" src="https://github.com/user-attachments/assets/02138981-861f-44de-8a26-c0f6a21367b3" />
 
-> **ADD IMAGE HERE:** export or screenshot your Page 3 dashboard and save it as
-> `screenshots/component_fault_analysis.png`
 
 ---
 
