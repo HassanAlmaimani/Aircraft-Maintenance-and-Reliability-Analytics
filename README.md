@@ -8,6 +8,41 @@ This project was built as a practical end-to-end analytics exercise covering dat
 
 ---
 
+## Live Dashboard
+
+**[View the interactive Power BI dashboard here](https://app.powerbi.com/view?r=eyJrIjoiODk0ODlkMWYtOGM3ZC00N2EyLTk4YTAtZGYyZmU1MDU2YWUwIiwidCI6IjJkMzE5NGUzLTE2NTQtNDZiZC1iYWUyLWFkMzdiYTExYjBhZSIsImMiOjl9)**
+
+---
+
+## Dashboard Preview
+
+### Executive Fleet Overview
+
+![Executive Fleet Overview](screenshots/executive_overview.png)
+
+> **ADD IMAGE HERE:** export or screenshot your Page 1 dashboard and save it as
+> `screenshots/executive_overview.png`
+
+---
+
+### Aircraft Reliability Analysis
+
+![Aircraft Reliability Analysis](screenshots/aircraft_reliability.png)
+
+> **ADD IMAGE HERE:** export or screenshot your Page 2 dashboard and save it as
+> `screenshots/aircraft_reliability.png`
+
+---
+
+### Component & Fault Analysis
+
+![Component & Fault Analysis](screenshots/component_fault_analysis.png)
+
+> **ADD IMAGE HERE:** export or screenshot your Page 3 dashboard and save it as
+> `screenshots/component_fault_analysis.png`
+
+---
+
 ## Project Objective
 
 The goal of this project is to help a fictional maintenance and engineering team answer questions such as:
@@ -157,6 +192,13 @@ This approach preserves traceability and prevents invalid data from silently aff
 
 The final Power BI model follows a **star-schema / fact-constellation design**.
 
+### Data Model Preview
+
+![Power BI Data Model](screenshots/data_model.png)
+
+> **OPTIONAL IMAGE HERE:** screenshot your Power BI Model View and save it as
+> `screenshots/data_model.png`
+
 The project contains three fact tables because the source data represents three different business processes and grains.
 
 ### Fact Tables
@@ -174,8 +216,6 @@ Measures include:
 * labor hours
 * maintenance cost
 
----
-
 **FactFlightUtilization**
 
 Grain:
@@ -189,8 +229,6 @@ Measures include:
 * flights operated
 
 This table provides the exposure denominator required for normalized reliability metrics.
-
----
 
 **FactWorkOrder**
 
@@ -206,8 +244,6 @@ Measures include:
 * priority
 
 Aircraft and component context were merged into the work-order fact to avoid unnecessary fact-to-fact relationships.
-
----
 
 ### Dimension Tables
 
@@ -227,8 +263,6 @@ Relationships use:
 Dimension → Fact
 Single-direction filtering
 ```
-
-This reduces ambiguity and helps prevent incorrect aggregations.
 
 ---
 
@@ -269,8 +303,6 @@ Maintenance Events =
 DISTINCTCOUNT(FactMaintenanceEvent[EventID])
 ```
 
----
-
 ### Unscheduled Maintenance %
 
 ```DAX
@@ -280,8 +312,6 @@ DIVIDE(
     [Maintenance Events]
 )
 ```
-
----
 
 ### MTTR
 
@@ -293,8 +323,6 @@ Unscheduled Repair Hours
 ÷
 Valid Unscheduled Repair Events
 ```
-
----
 
 ### MTBF
 
@@ -309,8 +337,6 @@ Unscheduled Maintenance Events
 
 This assumption is documented explicitly and should not be interpreted as a certified aviation reliability definition.
 
----
-
 ### Unscheduled Events per 1,000 Flight Hours
 
 ```DAX
@@ -320,10 +346,6 @@ DIVIDE(
     [Total Flight Hours]
 ) * 1000
 ```
-
-This metric allows aircraft with different levels of utilization to be compared more fairly.
-
----
 
 ### Downtime per 1,000 Flight Hours
 
@@ -335,8 +357,6 @@ DIVIDE(
 ) * 1000
 ```
 
----
-
 ### Maintenance Cost per Flight Hour
 
 ```DAX
@@ -347,15 +367,11 @@ DIVIDE(
 )
 ```
 
----
-
 ### Repeat Fault Rate
 
 A repeat fault was defined as:
 
 > The same aircraft experiencing another event involving the same component within 30 days of a previous event.
-
-This allows recurring aircraft/component combinations to be identified for investigation.
 
 ---
 
@@ -363,9 +379,9 @@ This allows recurring aircraft/component combinations to be identified for inves
 
 The report contains three main pages.
 
----
-
 ### 1. Executive Fleet Overview
+
+![Executive Fleet Overview](screenshots/executive_overview.png)
 
 Purpose:
 
@@ -380,16 +396,11 @@ Headline KPIs include:
 * Total Downtime
 * Total Maintenance Cost
 
-Visuals include:
-
-* unscheduled maintenance trend
-* scheduled vs unscheduled maintenance mix
-* top aircraft by maintenance downtime
-* monthly maintenance cost
-
 ---
 
 ### 2. Aircraft Reliability Analysis
+
+![Aircraft Reliability Analysis](screenshots/aircraft_reliability.png)
 
 Purpose:
 
@@ -404,16 +415,11 @@ Key metrics include:
 * Maintenance Cost / Flight Hour
 * Repeat Fault Rate
 
-Visuals include:
-
-* aircraft reliability ranking
-* maintenance cost vs downtime scatter plot
-* flight utilization vs unscheduled maintenance
-* monthly aircraft downtime trend
-
 ---
 
 ### 3. Component & Fault Analysis
+
+![Component & Fault Analysis](screenshots/component_fault_analysis.png)
 
 Purpose:
 
@@ -426,14 +432,6 @@ Visuals include:
 * maintenance events by fault category
 * repeat-fault rate by component manufacturer
 * component frequency vs downtime scatter plot
-
-This page helps distinguish between:
-
-> frequently occurring but low-impact faults
-
-and:
-
-> less frequent but operationally disruptive faults
 
 ---
 
@@ -450,8 +448,6 @@ Across the synthetic fleet, the analysis produced approximately:
 | Total Downtime          |      5,569.5 hours |
 | Maintenance Cost        |            ~$22.1M |
 
-The results also highlighted several important analytical lessons.
-
 ### 1. Raw maintenance counts can be misleading
 
 Aircraft with more maintenance events are not automatically less reliable.
@@ -460,25 +456,11 @@ Some aircraft simply operate more flight hours.
 
 Normalizing events by flight utilization produced a more meaningful aircraft comparison.
 
----
-
 ### 2. Maintenance frequency and operational impact are different
 
 Some components appeared frequently but caused relatively little aircraft downtime.
 
 Other components occurred less often but generated substantially greater downtime when they failed.
-
-This shows why prioritization should consider both:
-
-```text
-Frequency
-+
-Operational Impact
-```
-
-rather than event count alone.
-
----
 
 ### 3. Aircraft-level reliability issues can be isolated
 
@@ -486,135 +468,22 @@ The dashboard identified aircraft/component combinations with elevated unschedul
 
 These should be treated as areas for further engineering investigation rather than immediate proof of a specific root cause.
 
----
-
 ### 4. Work-order completion and labor estimation tell different stories
 
 Work orders may perform well against completion deadlines while still exceeding planned labor hours.
 
 This suggests maintenance scheduling and labor estimation should be analyzed separately.
 
-A team can be:
-
-> operationally on time
-
-while still experiencing:
-
-> planning or productivity variance.
-
 ---
 
 ## Recommendations
 
-Based on the analysis, the fictional maintenance organization should consider:
-
-1. **Prioritizing aircraft with elevated normalized unscheduled-maintenance rates** rather than relying only on raw event counts.
-
-2. **Investigating high-downtime component categories** even when their event frequency is relatively low.
-
-3. **Reviewing recurring aircraft/component fault combinations** for potential reliability or maintenance-process issues.
-
-4. **Tracking maintenance burden relative to aircraft utilization** using flight hours or cycles.
-
-5. **Reviewing work-order labor estimates** where actual labor consistently exceeds planned hours.
-
-6. **Using component manufacturer trends as investigation signals**, while avoiding causal conclusions without controlling for component mix and operational exposure.
-
----
-
-## Analytical Limitations
-
-This case study intentionally includes several limitations.
-
-### Synthetic Data
-
-The dataset is artificially generated and should only be treated as an analytical training environment.
-
-### MTBF Definition
-
-Unscheduled maintenance events are used as a proxy for failures.
-
-True engineering reliability programs would require more precise failure definitions and engineering records.
-
-### Availability
-
-True aircraft technical availability was not calculated because the dataset does not contain complete scheduled-availability or out-of-service-hour definitions.
-
-### Causality
-
-The dashboard identifies patterns and correlations, not proven causal relationships.
-
-For example:
-
-> a manufacturer with a high repeat-fault rate should be investigated
-
-does **not** automatically mean:
-
-> the manufacturer produces lower-quality equipment.
-
-Differences in component type, aircraft usage, severity, or sample size may explain part of the result.
-
----
-
-## Skills Demonstrated
-
-This project demonstrates practical experience with:
-
-### Data Preparation
-
-* Power Query
-* ETL workflows
-* data profiling
-* data quality validation
-* missing-value handling
-* duplicate detection
-* date standardization
-* business-rule validation
-
-### Data Modeling
-
-* star schemas
-* fact and dimension tables
-* table grain
-* cardinality
-* one-to-many relationships
-* filter direction
-* conformed dimensions
-* role-playing date relationships
-
-### DAX
-
-* measures
-* calculated columns
-* `CALCULATE`
-* `DIVIDE`
-* `FILTER`
-* `DISTINCTCOUNT`
-* `ALL`
-* `USERELATIONSHIP`
-* filter context
-* time intelligence
-
-### Analytics
-
-* KPI design
-* reliability analysis
-* normalization by operational exposure
-* root-cause investigation
-* repeat-fault analysis
-* cost analysis
-* maintenance workload analysis
-* operational performance measurement
-
-### Visualization
-
-* executive KPI reporting
-* ranking analysis
-* trend analysis
-* scatter plots
-* drill-down investigation
-* slicers and cross-filtering
-* business-focused dashboard design
+1. **Prioritize aircraft with elevated normalized unscheduled-maintenance rates** rather than relying only on raw event counts.
+2. **Investigate high-downtime component categories** even when their event frequency is relatively low.
+3. **Review recurring aircraft/component fault combinations** for potential reliability issues.
+4. **Track maintenance burden relative to aircraft utilization** using flight hours or cycles.
+5. **Review work-order labor estimates** where actual labor consistently exceeds planned hours.
+6. **Use component manufacturer trends as investigation signals**, while avoiding causal conclusions without controlling for component mix and operational exposure.
 
 ---
 
@@ -627,33 +496,22 @@ aircraft-maintenance-analytics/
 │
 ├── data/
 │   ├── raw/
-│   │   ├── aircraft.csv
-│   │   ├── components.csv
-│   │   ├── technicians.csv
-│   │   ├── maintenance_events.csv
-│   │   ├── work_orders.csv
-│   │   └── flight_utilization.csv
-│   │
 │   └── reference_clean/
 │
 ├── documentation/
-│   ├── data_dictionary.xlsx
-│   ├── PROJECT_BRIEF.md
-│   ├── ANALYST_HANDOFF.md
-│   ├── RELATIONSHIPS.md
-│   └── DATA_QUALITY_CHALLENGE.md
+│   └── data_dictionary.xlsx
 │
 ├── powerbi/
 │   └── Aircraft_Maintenance_Analytics.pbix
 │
+├── screenshots/
+│   ├── executive_overview.png
+│   ├── aircraft_reliability.png
+│   ├── component_fault_analysis.png
+│   └── data_model.png
+│
 ├── sql/
-│
-├── python/
-│
-└── screenshots/
-    ├── executive_overview.png
-    ├── aircraft_reliability.png
-    └── component_fault_analysis.png
+└── python/
 ```
 
 ---
@@ -682,7 +540,13 @@ Visualize and investigate
 Translate findings into actions
 ```
 
-By following this process, the final dashboard becomes a decision-support tool rather than simply a collection of visuals.
+---
+
+## Dashboard Access
+
+**[Open the interactive Power BI report](PASTE-YOUR-POWER-BI-LINK-HERE)**
+
+> **LINK HERE:** replace the placeholder with the final published report URL.
 
 ---
 
